@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define TAM 10
 #define SIZE 100
 
@@ -66,7 +67,6 @@ int main(){
 
     criarEstruturasArquivo(stream);
 
-    criarEstruturaAuxiliar(7, 10);
 
     for(int i = 0; i < 10; i++){
         for(int j = 0; j < tamVetor[i]; j++){
@@ -75,19 +75,21 @@ int main(){
         printf("\n");
     }
 
-    stream = fopen(filename, "w");
-    if (stream == NULL) {
+    FILE *saida = fopen("output.out", "w");
+    if (saida == NULL) {
         printf("Erro ao abrir o arquivo\n");
         return 1;
     }
 
-    salvarEstruturasArquivo(stream);
+    salvarEstruturasArquivo(saida);
 
+    fclose(saida);
     fclose(stream);
     finalizar();
 
     return 0;
 }
+
 
 /*
 Objetivo: criar estrutura auxiliar na posição 'posicao'.
